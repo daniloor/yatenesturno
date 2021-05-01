@@ -1,0 +1,45 @@
+{% extends "yatenesturnoapp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+    <!-- Pasos-->
+    <section class="page-section" id="about">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Adherí tu local</h2>
+                <h3 class="section-subheading text-muted">Para adherí tu local segui los dos siguientes pasos, es muy sencillo!</h3>
+            </div>
+            <ul class="timeline">
+                <li>
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/android.png"
+                            alt="" /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="subheading">Descarga la aplicación</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">Ingresa aquí para descargar la aplicación en PlayStore. Actualmente solo está disponible para dispositivos android.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted">
+                    <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/logo.svg"
+                            alt="" /></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="subheading">Ingresá y registrá tu lugar</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p class="text-muted">Una vez descargada la aplicación, ingresá en "Registrá tu lugar" y seguí las instrucciones.</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    
+    {% endblock %}

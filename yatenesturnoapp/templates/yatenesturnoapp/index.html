@@ -1,0 +1,89 @@
+{% extends "yatenesturnoapp/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<section class="page-section" id="portfolio">
+    <div id="searcher" class="container">
+        <div class="row mb-3 justify-content-between">
+            <div class="col-md-3 mt-md-4">
+                <form action="{{client.0.category}}" method="GET">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <button class="btn btn-primary" type="submit">Filtrar</button>
+                        </div>
+                        <select class="custom-select" name="type" id="categoryFilter">
+                            <option {% if not filterType %} selected {% endif %} value="">Categorias</option>
+                            {% for type in typeList %}
+                            <option {% if filterType == type %} selected {% endif %} value="{{type}}">{{type|title}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                    </form>
+            </div>
+            <div class="col-md-4 mt-2 mt-md-4">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="searchFilter" onkeyup="filter()" placeholder="Buscar por nombre">
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        {% for client in clients %}
+        {% if not filterType or filterType == client.type %}
+        <a class="show-card-a" href="#">
+            <div class="show-card mb-3">
+                <div class="row">
+                    <div class="col-4 col-md-4" style="padding: 0.8rem; margin-top: auto; margin-bottom: auto;">
+                        <div class="show-card-image"
+                            style="background-image: url( {% static 'yatenesturnoapp/assets/img/padel.jpeg' %});">
+                        </div>
+                    </div>
+                    <div class="row col-8 col-md-4 d-flex flex-column justify-content-center ml-2">
+                        <div class="show-card-title">{{client.name}}</div>
+                        <div class="show-card-description">{{client.description}}</div>
+                        <div class="show-card-location"><i class="fa fa-map-marker"></i> {{client.direction}}</div>
+                    </div>
+                    <div class="show-button col-md-4 align-self-center">
+                        <button class="btn btn-primary" onclick="window.location.href = '#'">Sacar turno</button>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+     
+    </div>
+
+</section>
+
+<script>
+    function filter() {
+    
+    let input, filterText;
+    input = document.getElementById("searchFilter");
+    filterText = input.value.toUpperCase();
+    let elements = document.getElementsByClassName("show-card-a")
+    for (let i = 0; i < elements.length; i++) {
+        let titleElement = elements[i].getElementsByClassName("show-card-title")
+        let textValue = titleElement[0].innerHTML.toUpperCase();
+        if (textValue.indexOf(filterText) > -1) {
+            elements[i].style.display = ''
+        }
+        else {
+            elements[i].style.display = 'none';
+        }
+    }
+}
+</script>
+
+
+{% endblock %}
+
